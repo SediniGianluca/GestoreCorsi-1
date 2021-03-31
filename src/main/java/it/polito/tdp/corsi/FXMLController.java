@@ -69,9 +69,18 @@ public class FXMLController {
     	}
     	
     	List<Corso> corsi = this.model.getCorsiByPeriodo(periodo);
+    	//for(Corso c : corsi) {
+    	//	txtRisultato.appendText(c.toString() + "\n");
+    	//}
+    	txtRisultato.setStyle("-fx-font-family: monospace");
+    	StringBuilder sb= new StringBuilder();
     	for(Corso c : corsi) {
-    		txtRisultato.appendText(c.toString() + "\n");
+    		sb.append(String.format("%-8s",c.getCodins()));
+    		sb.append(String.format("%-4d",c.getCrediti()));
+    		sb.append(String.format("%-50s",c.getNome()));
+    		sb.append(String.format("%-4d\n",c.getPd()));
     	}
+    	txtRisultato.appendText(sb.toString());
     }
 
     @FXML
