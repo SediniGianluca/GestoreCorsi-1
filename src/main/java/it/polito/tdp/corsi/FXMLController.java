@@ -72,12 +72,12 @@ public class FXMLController {
     	//for(Corso c : corsi) {
     	//	txtRisultato.appendText(c.toString() + "\n");
     	//}
-    	txtRisultato.setStyle("-fx-font-family: monospace");
+    	
     	StringBuilder sb= new StringBuilder();
     	for(Corso c : corsi) {
-    		sb.append(String.format("%-8s",c.getCodins()));
-    		sb.append(String.format("%-4d",c.getCrediti()));
-    		sb.append(String.format("%-50s",c.getNome()));
+    		sb.append(String.format("%-8s ",c.getCodins()));
+    		sb.append(String.format("%-4d ",c.getCrediti()));
+    		sb.append(String.format("%-50s ",c.getNome()));
     		sb.append(String.format("%-4d\n",c.getPd()));
     	}
     	txtRisultato.appendText(sb.toString());
@@ -107,11 +107,20 @@ public class FXMLController {
     	}
     	
     	Map<Corso, Integer> corsiIscrizioni = this.model.getIscrittiByPeriodo(periodo);
-    	for(Corso c : corsiIscrizioni.keySet()) {
+    	/*for(Corso c : corsiIscrizioni.keySet()) {
     		txtRisultato.appendText(c.toString());
     		Integer n = corsiIscrizioni.get(c);
     		txtRisultato.appendText("\t" + n + "\n");
+    	}*/
+    	StringBuilder sb= new StringBuilder();
+    	for(Corso c : corsiIscrizioni.keySet()) {
+    		sb.append(String.format("%-8s ",c.getCodins()));
+    		sb.append(String.format("%-4d ",c.getCrediti()));
+    		sb.append(String.format("%-50s ",c.getNome()));
+    		sb.append(String.format("%-4d ",c.getPd()));
+    		sb.append(String.format("%-4d\n", corsiIscrizioni.get(c)));
     	}
+    	txtRisultato.appendText(sb.toString());
     }
 
     @FXML
@@ -138,6 +147,7 @@ public class FXMLController {
     
     public void setModel(Model model) {
     	this.model = model;
+    	txtRisultato.setStyle("-fx-font-family: monospace");
     }
     
     
